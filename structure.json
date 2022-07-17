@@ -1,0 +1,10 @@
+{
+    "english" : [
+        {
+            "id" : 1,
+            "unknown" : "car",
+            "known" : "bil",
+            "rate" : 0.9
+        }
+    ]
+}
