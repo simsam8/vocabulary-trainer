@@ -10,8 +10,8 @@ Train your vocabulary in different languages
 - [x] add a way to choose current language
 - [x] store words with translations
 - [x] method to remove languages and word pairs
-- [ ]implement a word testing game, and calculate error rate
-- [ ]choose word based on error rate, higher rates are chosen more often
+- [ ] implement a word testing game, and calculate error rate
+- [ ] choose word based on error rate, higher rates are chosen more often
 
 
 #### Notes
