@@ -30,7 +30,6 @@ class Vocab:
             print(f"{new_lang} added to languages")
         else:
             print(f"{new_lang} is already in languages")
-        # print(self.languages)
 
     def choose_language(self):
         self.interface("language")
@@ -55,6 +54,14 @@ class Vocab:
         }
 
         self.languages[language].append(pair_data)
+
+    # TODO: Remove pair method
+    def remove_pair(self):
+        return
+
+    # TODO: Remove language method
+    def remove_language(self):
+        return
 
     def save(self):
         to_write = json.dumps(self.languages, indent=1)
