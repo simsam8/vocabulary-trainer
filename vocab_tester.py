@@ -15,6 +15,7 @@ class Vocab_tester:
         with open(self.file_to_load, "r") as f:
             self.vocabulary = json.load(f)
 
+    # TODO: add method to choose random pair
     def random_pair(self):
         return
 
