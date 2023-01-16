@@ -75,6 +75,8 @@ class Vocab:
             "unknown": unknown,
             "known": known,
             "rate": None,
+            "correct": 0,
+            "total": 0,
         }
 
         self.languages[language].append(pair_data)
