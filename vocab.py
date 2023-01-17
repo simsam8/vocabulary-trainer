@@ -103,7 +103,7 @@ class Vocab:
 
     def save(self):
         to_write = json.dumps(self.languages, indent=1)
-        with open("vocabs.json", "w") as f:
+        with open(self.file_to_load, "w") as f:
             f.write(to_write)
 
     def load(self):
