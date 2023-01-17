@@ -2,7 +2,8 @@ import json
 
 
 class Vocab:
-    def __init__(self) -> None:
+    def __init__(self, file_to_load) -> None:
+        self.file_to_load = file_to_load
         self.languages = {}
         self.load()
 
@@ -105,33 +106,32 @@ class Vocab:
             f.write(to_write)
 
     def load(self):
-        with open("vocabs.json", "r") as f:
+        with open(self.file_to_load, "r") as f:
             self.languages = json.load(f)
 
     def show_data(self):
         print(self.languages)
 
-
-def main():
-    voc = Vocab()
-    while True:
-        voc.show_data()
-        voc.interface("main")
-        choice = int(input("Choose option: "))
-        if choice == 1:  # Add word pair
-            voc.add_pair()
-        if choice == 2:  # Add language
-            voc.add_language()
-        if choice == 3:  # Remove pair
-            voc.remove_pair()
-        if choice == 4:  # Remove language
-            voc.remove_language()
-        if choice == 5:  # Save and Quit
-            voc.save()
-            return False
-        if choice == 6:  # Quit without saving
-            return False
+    def access_vocab(self):
+        while True:
+            self.show_data()
+            self.interface("main")
+            choice = int(input("Choose option: "))
+            if choice == 1:  # Add word pair
+                self.add_pair()
+            if choice == 2:  # Add language
+                self.add_language()
+            if choice == 3:  # Remove pair
+                self.remove_pair()
+            if choice == 4:  # Remove language
+                self.remove_language()
+            if choice == 5:  # Save and Quit
+                self.save()
+                return False
+            if choice == 6:  # Quit without saving
+                return False
 
 
 if __name__ == "__main__":
-    main()
+    voc = Vocab("vocabs.json")
+    voc.access_vocab()
