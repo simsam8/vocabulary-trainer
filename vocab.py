@@ -81,6 +81,7 @@ class Vocab:
         }
 
         self.languages[language].append(pair_data)
+        self.save()
 
     def remove_pair(self):
         if len(self.languages) == 0:
