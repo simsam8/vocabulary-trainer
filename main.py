@@ -13,7 +13,7 @@ def interface():
     print("3.\tVocabulary settings")
     # TODO: add function to change file
     print("4.\tChange current vocabulary file")
-    print("5.\tQuit")
+    print("5.\tSave and Quit")
     print("- - - - - - - - - - - -\n")
 
 
@@ -31,7 +31,8 @@ def main():
         if choice == 4:
             return
         if choice == 5:
-            print("Exiting program")
+            print("Saving and Exiting program")
+            vocab.save()
             return False
 
 
