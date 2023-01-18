@@ -41,6 +41,7 @@ class Vocab:
                 unknown = pair["unknown"]
                 known = pair["known"]
                 print(f"{pair_id}.\t{unknown}|{known}")
+            print(f"{len(self.languages[language])}.\tCancel")
             print("\n- - - - - - - - - - - -")
 
     def add_language(self):
@@ -52,10 +53,17 @@ class Vocab:
             print(f"{new_lang} is already in languages")
 
     def choose_language(self):
-        self.interface("language")
-        lang_id = int(input("Choose language: ").lower())
-        language = list(self.languages.items())[lang_id][0]
-        return language
+        while True:
+            self.interface("language")
+            try:
+                lang_id = int(input("Choose language: ").lower())
+                if lang_id >= len(self.languages):
+                    print("Option does not exist")
+                    continue
+                language = list(self.languages.items())[lang_id][0]
+                return language
+            except ValueError:
+                print("String is not a valid input")
 
     def add_pair(self):
         if len(self.languages) == 0:
@@ -88,10 +96,23 @@ class Vocab:
             print("No languages exist!")
             return
         language = self.choose_language()
-        self.interface("pairs", language=language)
-        to_remove = int(input("Choose a pair to remove: "))
-        self.languages[language].pop(to_remove)
-        print("Pair succesfully removed!")
+        while True:
+            try:
+                self.interface("pairs", language=language)
+                to_remove = int(input("Choose a pair to remove: "))
+                if to_remove > len(self.languages[language]):
+                    print("Option does not exist")
+                    continue
+                if to_remove == len(self.languages[language]):
+                    print("Cancelling pair removal")
+                    break
+                self.languages[language].pop(to_remove)
+                print("Pair succesfully removed!")
+                break
+
+            except ValueError:
+                print("String is not valid input")
+                continue
 
     def remove_language(self):
         if len(self.languages) == 0:
