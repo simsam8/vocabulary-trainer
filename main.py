@@ -1,5 +1,6 @@
 from vocab import Vocab
 from vocab_tester import Vocab_tester as Tester
+import error_msgs as ERR
 
 FILE_TO_USE = "vocabs.json"
 game_tester = Tester(FILE_TO_USE)
@@ -30,23 +31,23 @@ def main():
         try:
             choice = int(input("Choose option: "))
         except ValueError:
-            print("String is not valid as input")
+            print(ERR.STR_NOT_VAL_INP)
             continue
 
         if choice == 1:
             vocab.add_pair()
-        if choice == 2:
+        elif choice == 2:
             game_tester.random_pair()
-        if choice == 3:
+        elif choice == 3:
             vocab.access_vocab()
-        if choice == 4:
+        elif choice == 4:
             change_file()
-        if choice == 5:
+        elif choice == 5:
             print("Saving and Exiting program")
             vocab.save()
             return False
         else:
-            print("Not a valid option")
+            print(ERR.NO_OPTION)
 
 
 if __name__ == "__main__":

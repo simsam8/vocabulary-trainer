@@ -1,4 +1,5 @@
 import json
+import error_msgs as ERR
 
 
 class Vocab:
@@ -58,12 +59,12 @@ class Vocab:
             try:
                 lang_id = int(input("Choose language: ").lower())
                 if lang_id >= len(self.languages):
-                    print("Option does not exist")
+                    print(ERR.NO_OPTION)
                     continue
                 language = list(self.languages.items())[lang_id][0]
                 return language
             except ValueError:
-                print("String is not a valid input")
+                print(ERR.STR_NOT_VAL_INP)
 
     def add_pair(self):
         if len(self.languages) == 0:
@@ -101,7 +102,7 @@ class Vocab:
                 self.interface("pairs", language=language)
                 to_remove = int(input("Choose a pair to remove: "))
                 if to_remove > len(self.languages[language]):
-                    print("Option does not exist")
+                    print(ERR.NO_OPTION)
                     continue
                 if to_remove == len(self.languages[language]):
                     print("Cancelling pair removal")
@@ -111,7 +112,7 @@ class Vocab:
                 break
 
             except ValueError:
-                print("String is not valid input")
+                print(ERR.STR_NOT_VAL_INP)
                 continue
 
     def remove_language(self):
@@ -141,17 +142,19 @@ class Vocab:
             choice = int(input("Choose option: "))
             if choice == 1:  # Add word pair
                 self.add_pair()
-            if choice == 2:  # Add language
+            elif choice == 2:  # Add language
                 self.add_language()
-            if choice == 3:  # Remove pair
+            elif choice == 3:  # Remove pair
                 self.remove_pair()
-            if choice == 4:  # Remove language
+            elif choice == 4:  # Remove language
                 self.remove_language()
-            if choice == 5:  # Save and Quit
+            elif choice == 5:  # Save and Quit
                 self.save()
                 return False
-            if choice == 6:  # Quit without saving
+            elif choice == 6:  # Quit without saving
                 return False
+            else:
+                print(ERR.NO_OPTION)
 
 
 if __name__ == "__main__":
