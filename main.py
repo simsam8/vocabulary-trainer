@@ -11,7 +11,6 @@ def interface():
     print("1.\tAdd word pair")
     print("2.\tTest your vocabulary")
     print("3.\tVocabulary settings")
-    # TODO: add function to change file
     print("4.\tChange current vocabulary file")
     print("5.\tSave and Quit")
     print("- - - - - - - - - - - -\n")
@@ -28,7 +27,11 @@ def change_file():
 def main():
     while True:
         interface()
-        choice = int(input("Choose option: "))
+        try:
+            choice = int(input("Choose option: "))
+        except ValueError:
+            print("String is not valid as input")
+            continue
 
         if choice == 1:
             vocab.add_pair()
@@ -42,6 +45,8 @@ def main():
             print("Saving and Exiting program")
             vocab.save()
             return False
+        else:
+            print("Not a valid option")
 
 
 if __name__ == "__main__":
