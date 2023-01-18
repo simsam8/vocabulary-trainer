@@ -21,10 +21,11 @@ class Vocab:
             print("\n- - - - - - - - - - - -")
             print("1.\tAdd Word Pair")
             print("2.\tAdd Language")
-            print("3.\tRemove Pair")
-            print("4.\tRemove Language")
-            print("5.\tSave and Quit")
-            print("6.\tQuit")
+            print("3.\tEdit Pair")
+            print("4.\tRemove Pair")
+            print("5.\tRemove Language")
+            print("6.\tSave and Quit")
+            print("7.\tQuit")
             print("- - - - - - - - - - - -\n")
 
         # Display languages
@@ -115,6 +116,43 @@ class Vocab:
                 print(ERR.STR_NOT_VAL_INP)
                 continue
 
+    def edit_pair(self):
+        if len(self.languages) == 0:
+            print("No languages exist!")
+            return
+        language = self.choose_language()
+        while True:
+            try:
+                self.interface("pairs", language=language)
+                pair_id = int(input("Choose a pair to edit: "))
+                to_edit = self.languages[language][pair_id]
+                if pair_id > len(self.languages[language]):
+                    print(ERR.NO_OPTION)
+                    continue
+                if pair_id == len(self.languages[language]):
+                    print("Cancelling pair editing")
+                    break
+                print(f"0.\tunknown: {to_edit['unknown']}")
+                print(f"1.\tknown: {to_edit['known']}")
+                edit_option = int(input(("Choose option to edit: ")))
+                while True:
+                    if edit_option == 0:
+                        old_text = "unknown"
+                        break
+                    elif edit_option == 1:
+                        old_text = "known"
+                        break
+                    else:
+                        print(ERR.NO_OPTION)
+                new_text = input("Write your edit: ")
+                self.languages[language][pair_id][old_text] = new_text
+                print("Pair succesfully edited!")
+                break
+
+            except ValueError:
+                print(ERR.STR_NOT_VAL_INP)
+                continue
+
     def remove_language(self):
         if len(self.languages) == 0:
             print("No languages exist!")
@@ -144,14 +182,16 @@ class Vocab:
                 self.add_pair()
             elif choice == 2:  # Add language
                 self.add_language()
-            elif choice == 3:  # Remove pair
+            elif choice == 3:  # Edit pair
+                self.edit_pair()
+            elif choice == 4:  # Remove pair
                 self.remove_pair()
-            elif choice == 4:  # Remove language
+            elif choice == 5:  # Remove language
                 self.remove_language()
-            elif choice == 5:  # Save and Quit
+            elif choice == 6:  # Save and Quit
                 self.save()
                 return False
-            elif choice == 6:  # Quit without saving
+            elif choice == 7:  # Quit without saving
                 return False
             else:
                 print(ERR.NO_OPTION)
