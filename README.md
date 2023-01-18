@@ -11,7 +11,7 @@ Train your vocabulary in different languages
 - [x] store words with translations
 - [x] method to remove languages and word pairs
 - [x] validate all inputs
-- [ ] add method to edit word pairs
+- [x] add method to edit word pairs
 - [ ] implement a word testing game, and calculate error rate
 - [ ] choose word based on error rate, higher rates are chosen more often
 
